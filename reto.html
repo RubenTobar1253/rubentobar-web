@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Reto E×C×T=R — Rubén A. Tobar</title>
+<meta name="description" content="Una bitácora de ejecución de 30 días basada en la fórmula E×C×T=R. Registra tu esfuerzo, tu concentración y tu tiempo cada día, y observa cómo se construye tu resultado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/reto.css">
+
+<!-- PWA: la bitácora como app instalable -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#12181F">
+<link rel="apple-touch-icon" href="images/app/apple-touch-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Reto E×C×T=R">
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="brand">
+      <span class="brand-name">Rubén A. Tobar</span>
+      <span class="brand-formula">E×C×T=R</span>
+    </a>
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="sobre-mi.html">Sobre mí</a></li>
+      <li><a href="libros.html">Libros</a></li>
+      <li><a href="reto.html" aria-current="page">El Reto</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- =====================================================
+     PORTADA DEL RETO
+     ===================================================== -->
+<section class="reto-hero">
+  <div class="reto-hero-inner">
+    <span class="eyebrow">Bitácora de ejecución · 30 días</span>
+    <h1>La fórmula no se lee.<br><em>Se registra.</em></h1>
+    <p class="reto-lede">
+      En la planta, cada turno deja un parte escrito: qué se produjo, cuánto y en
+      qué condiciones. Este es tu parte de turno personal. Durante 30 días vas a
+      registrar tres números — tu esfuerzo, tu concentración y tu tiempo — y la
+      fórmula hará lo que siempre hace: decirte la verdad.
+    </p>
+    <p class="reto-verse">«No nos cansemos de hacer el bien, que a su tiempo segaremos, si no desmayamos.» — Gálatas 6:9</p>
+  </div>
+</section>
+
+<!-- =====================================================
+     PASO 1 · DEFINIR LA META (solo se muestra si no hay meta)
+     ===================================================== -->
+<section class="section section-dark" id="panel-meta" hidden>
+  <div class="section-inner reto-narrow">
+    <span class="kicker">Paso 1 · La meta</span>
+    <h2 class="section-title">¿Qué vas a ejecutar?</h2>
+    <p class="section-lede">
+      Una meta concreta, un motivo honesto y una cantidad mínima de minutos al día.
+      Con eso basta. La fórmula se encarga del resto.
+    </p>
+
+    <div class="reto-form">
+      <label class="reto-label" for="meta-nombre">Tu meta (algo concreto y medible)</label>
+      <input type="text" id="meta-nombre" maxlength="80" placeholder="Ej.: salir a caminar todos los días">
+
+      <label class="reto-label" for="meta-motivo">¿Por qué importa? (una frase)</label>
+      <input type="text" id="meta-motivo" maxlength="120" placeholder="Ej.: porque quiero recuperar mi energía y mi salud">
+
+      <label class="reto-label" for="meta-minutos">Minutos mínimos por día</label>
+      <input type="number" id="meta-minutos" min="10" max="480" step="5" value="15">
+
+      <button type="button" class="btn btn-primary" id="btn-iniciar-reto">Iniciar mis 30 días</button>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     PASO 2 · PARTE DE TURNO (registro del día)
+     ===================================================== -->
+<section class="section section-dark" id="panel-registro" hidden>
+  <div class="section-inner">
+
+    <div class="aviso-racha" id="aviso-racha" hidden>
+      Ayer quedó un turno sin firmar. No pasa nada: la racha se defiende hoy, no ayer.
+    </div>
+
+    <blockquote class="frase-dia">
+      <p id="frase-dia-texto">—</p>
+      <cite id="frase-dia-fuente"></cite>
+    </blockquote>
+
+    <div class="parte-cabecera">
+      <div>
+        <span class="kicker">Parte de turno</span>
+        <h2 class="section-title" id="registro-titulo-meta">—</h2>
+        <p class="parte-motivo" id="registro-motivo">—</p>
+      </div>
+      <div class="parte-dia">
+        <span class="parte-dia-num" id="registro-dia-num">Día 1</span>
+        <span class="parte-dia-fecha" id="registro-fecha">—</span>
+      </div>
+    </div>
+
+    <div class="parte-grid">
+      <!-- Los tres factores -->
+      <div class="parte-factores">
+        <div class="factor" data-factor="e">
+          <div class="factor-head">
+            <span class="factor-letra">E</span>
+            <span class="factor-nombre">Esfuerzo</span>
+            <span class="factor-valor" id="valor-e">5</span>
+          </div>
+          <input type="range" id="input-e" min="0" max="10" step="1" value="5" aria-label="Esfuerzo de 0 a 10">
+          <p class="factor-guia">¿Te presentaste con todo, o solo cumpliste?</p>
+        </div>
+
+        <div class="factor" data-factor="c">
+          <div class="factor-head">
+            <span class="factor-letra">C</span>
+            <span class="factor-nombre">Concentración</span>
+            <span class="factor-valor" id="valor-c">5</span>
+          </div>
+          <input type="range" id="input-c" min="0" max="10" step="1" value="5" aria-label="Concentración de 0 a 10">
+          <p class="factor-guia">¿Protegiste la tarea de las interrupciones?</p>
+        </div>
+
+        <div class="factor" data-factor="t">
+          <div class="factor-head">
+            <span class="factor-letra">T</span>
+            <span class="factor-nombre">Tiempo</span>
+            <span class="factor-valor"><span id="valor-t">60</span> min</span>
+          </div>
+          <input type="range" id="input-t" min="0" max="240" step="5" value="60" aria-label="Minutos invertidos, de 0 a 240">
+          <p class="factor-guia">Minutos reales sobre la meta. Reales.</p>
+        </div>
+
+        <label class="reto-label" for="input-nota">Nota del turno (opcional)</label>
+        <input type="text" id="input-nota" maxlength="140" placeholder="¿Qué pasó hoy? Una línea basta.">
+      </div>
+
+      <!-- El resultado en vivo -->
+      <div class="parte-resultado">
+        <div class="resultado-ecuacion" id="resultado-ecuacion">
+          <span class="re-num" id="re-e">5</span>
+          <span class="re-op">×</span>
+          <span class="re-num" id="re-c">5</span>
+          <span class="re-op">×</span>
+          <span class="re-num" id="re-t">1.0<small>h</small></span>
+          <span class="re-op">=</span>
+        </div>
+        <div class="resultado-r" id="resultado-r">25.0</div>
+        <div class="resultado-etiqueta">R · unidades de avance</div>
+        <p class="resultado-lectura" id="resultado-lectura">—</p>
+        <button type="button" class="btn btn-primary" id="btn-guardar-dia">Firmar el parte de hoy</button>
+        <p class="resultado-guardado" id="mensaje-guardado" hidden>✓ Parte firmado. Nos vemos mañana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     LA CURVA · historial, racha y punto de quiebre
+     ===================================================== -->
+<section class="section section-kraft" id="panel-curva" hidden>
+  <div class="section-inner">
+    <span class="kicker">La curva de ejecución</span>
+    <h2 class="section-title">Tu resultado, día por día</h2>
+
+    <div class="curva-stats">
+      <div class="stat">
+        <span class="stat-num" id="stat-dias">0</span>
+        <span class="stat-label">días firmados</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-racha">0</span>
+        <span class="stat-label">racha actual</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-acumulado">0</span>
+        <span class="stat-label">R acumulado</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="stat-mejor">—</span>
+        <span class="stat-label">mejor día</span>
+      </div>
+    </div>
+
+    <div class="quiebre-banner" id="quiebre-banner" hidden>
+      <strong>Punto de quiebre alcanzado.</strong>
+      <span id="quiebre-texto">Tu promedio reciente supera con claridad al de tus primeros días. La curva ya no es una línea: es una pendiente.</span>
+    </div>
+
+    <div class="curva-canvas-wrap">
+      <canvas id="curva-canvas" height="320" aria-label="Gráfica de tu resultado diario y acumulado"></canvas>
+      <div class="curva-leyenda">
+        <span class="ley ley-barra">R diario</span>
+        <span class="ley ley-linea">R acumulado</span>
+      </div>
+    </div>
+
+    <div class="bitacora-lista" id="bitacora-lista"></div>
+
+    <div class="curva-acciones">
+      <button type="button" class="btn btn-primary" id="btn-compartir">Compartir mi curva</button>
+      <button type="button" class="btn btn-ghost-dark" id="btn-exportar">Descargar mi bitácora (JSON)</button>
+      <button type="button" class="btn btn-ghost-dark" id="btn-reiniciar">Reiniciar el reto</button>
+    </div>
+
+    <!-- Recordatorio diario -->
+    <div class="ajustes-panel">
+      <h3 class="ajustes-titulo">Recordatorio diario</h3>
+      <p class="ajustes-texto">
+        Con la app abierta o instalada, te avisamos si el parte del día sigue sin firmar
+        a la hora que elijas.
+      </p>
+      <div class="ajustes-fila">
+        <label class="interruptor">
+          <input type="checkbox" id="ajuste-recordatorio">
+          <span class="interruptor-pista" aria-hidden="true"></span>
+          <span>Recordarme cada día</span>
+        </label>
+        <label class="ajuste-hora">
+          a las
+          <input type="time" id="ajuste-hora" value="20:00">
+        </label>
+      </div>
+      <p class="ajustes-estado" id="recordatorio-estado"></p>
+    </div>
+
+    <!-- Instalar como app -->
+    <div class="instalar-panel" id="instalar-panel" hidden>
+      <h3 class="ajustes-titulo">Lleva el reto en tu bolsillo</h3>
+      <p class="ajustes-texto" id="instalar-texto">
+        Instala la bitácora en tu teléfono: abre a pantalla completa, funciona sin
+        conexión y queda a un toque de distancia.
+      </p>
+      <button type="button" class="btn btn-primary" id="btn-instalar" hidden>Instalar la app</button>
+      <p class="ajustes-texto instalar-ios" id="instalar-ios" hidden>
+        En iPhone: toca el botón <strong>Compartir</strong> de Safari y elige
+        <strong>«Añadir a pantalla de inicio»</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+     CIERRE · puente hacia los libros
+     ===================================================== -->
+<section class="section section-kraft-light">
+  <div class="section-inner reto-narrow">
+    <h2 class="section-title">La fórmula completa vive en los libros</h2>
+    <p class="section-lede">
+      Este reto es la práctica. La teoría, los casos y el porqué de cada factor
+      están en <em>Ejecuta: El Arte de Ejecutar las Ideas</em> y en el resto del
+      catálogo. Si la curva te está hablando, allí está la conversación completa.
+    </p>
+    <a href="libros.html" class="btn btn-primary">Ver los libros</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-formula">E × C × T = R</div>
+      <p class="footer-note">© <span id="year"></span> Rubén A. Tobar. Todos los derechos reservados.</p>
+      <p class="footer-note">Como asociado de Amazon, gano por compras que califican.</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="libros.html">Libros</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script src="js/reto.js"></script>
+<script src="js/reto-pwa.js"></script>
+<script>
+// Registro del service worker: activa el modo sin conexión y la instalación
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function (e) {
+      console.warn('Service worker no disponible:', e);
+    });
+  });
+}
+</script>
+</body>
+</html>

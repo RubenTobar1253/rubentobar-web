@@ -1,0 +1,24 @@
+{
+  "name": "El Reto E×C×T=R — Rubén A. Tobar",
+  "short_name": "Reto E×C×T=R",
+  "description": "Bitácora de ejecución de 30 días. Registra tu esfuerzo, tu concentración y tu tiempo, y observa cómo se construye tu resultado.",
+  "lang": "es",
+  "start_url": "reto.html?src=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#12181F",
+  "theme_color": "#12181F",
+  "icons": [
+    { "src": "images/app/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "images/app/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "images/app/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Firmar el parte de hoy",
+      "url": "reto.html?src=atajo",
+      "icons": [{ "src": "images/app/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
