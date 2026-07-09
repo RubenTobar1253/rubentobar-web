@@ -6,6 +6,7 @@
 <title>El Reto E×C×T=R — Rubén A. Tobar</title>
 <meta name="description" content="Una bitácora de ejecución de 30 días basada en la fórmula E×C×T=R. Registra tu esfuerzo, tu concentración y tu tiempo cada día, y observa cómo se construye tu resultado.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/reto.css">
 
@@ -53,6 +54,322 @@
     <p class="reto-verse">«No nos cansemos de hacer el bien, que a su tiempo segaremos, si no desmayamos.» — Gálatas 6:9</p>
   </div>
 </section>
+
+<!-- ==================== INICIO SECCIÓN: PANEL DE EJECUCIÓN ==================== -->
+<section class="pex" id="panel-ejecucion" aria-label="Panel de ejecución E por C por T igual R">
+<style>
+  /* Paleta propia del panel: tinta profunda + ámbar industrial */
+  .pex {
+    --pex-ink: #0B141D;
+    --pex-panel: #101E2B;
+    --pex-panel-light: #16283A;
+    --pex-line: #1F3448;
+    --pex-amber: #F5A524;
+    --pex-amber-dim: #B87A14;
+    --pex-steel: #7E97AB;
+    --pex-paper: #E9EFF4;
+    --pex-ok: #59C99B;
+
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    background: var(--pex-ink);
+    color: var(--pex-paper);
+    padding: 56px 20px 52px;
+    background-image:
+      linear-gradient(rgba(31,52,72,.13) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(31,52,72,.13) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .pex * { box-sizing: border-box; margin: 0; }
+  .pex-inner { max-width: 900px; margin: 0 auto; }
+
+  .pex-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 4px;
+    color: var(--pex-amber);
+    text-align: center; margin-bottom: 12px;
+  }
+  .pex h2 {
+    text-align: center; font-weight: 700;
+    font-size: clamp(24px, 4vw, 34px);
+    margin-bottom: 10px;
+  }
+  .pex h2 em { color: var(--pex-amber); font-style: normal; }
+  .pex-lead {
+    text-align: center; color: var(--pex-steel);
+    max-width: 54ch; margin: 0 auto 34px;
+    font-size: 16px; line-height: 1.65;
+  }
+
+  /* ---- Tablero ---- */
+  .pex-board {
+    background: var(--pex-panel);
+    border: 1px solid var(--pex-line);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,.45);
+  }
+  .pex-top {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--pex-line);
+    background: var(--pex-panel-light);
+  }
+  .pex-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--pex-ok);
+    box-shadow: 0 0 10px var(--pex-ok);
+  }
+  .pex-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 3px; color: var(--pex-steel);
+  }
+  .pex-formula {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--pex-amber); font-weight: 700; font-size: 14px;
+  }
+  .pex-body {
+    display: grid; grid-template-columns: 1.2fr .8fr;
+    gap: 30px; padding: 26px 24px 10px; align-items: center;
+  }
+
+  /* ---- Palancas ---- */
+  .pex-lever { margin-bottom: 22px; }
+  .pex-lever:last-child { margin-bottom: 4px; }
+  .pex-lhead { display: flex; align-items: baseline; gap: 10px; margin-bottom: 8px; }
+  .pex-lcode {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--pex-amber); font-weight: 700; font-size: 15px;
+  }
+  .pex-llabel { color: var(--pex-steel); font-size: 14px; letter-spacing: .5px; }
+  .pex-lval {
+    margin-left: auto;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--pex-paper); font-weight: 700;
+  }
+  .pex input[type=range] {
+    width: 100%; appearance: none; -webkit-appearance: none;
+    height: 5px; background: var(--pex-line);
+    border-radius: 3px; outline: none;
+  }
+  .pex input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; width: 22px; height: 22px;
+    border-radius: 4px; background: var(--pex-amber);
+    border: 2px solid var(--pex-ink); cursor: pointer;
+    box-shadow: 0 0 0 2px rgba(245,165,36,.33);
+  }
+  .pex input[type=range]::-moz-range-thumb {
+    width: 22px; height: 22px; border-radius: 4px;
+    background: var(--pex-amber);
+    border: 2px solid var(--pex-ink); cursor: pointer;
+  }
+  .pex input[type=range]:focus-visible {
+    outline: 2px solid var(--pex-amber); outline-offset: 4px;
+  }
+  .pex-ticks { display: flex; justify-content: space-between; margin-top: 7px; }
+  .pex-tick { width: 2px; height: 7px; background: var(--pex-line); }
+  .pex-tick.on { background: var(--pex-amber); }
+
+  /* ---- Medidor ---- */
+  .pex-readout { text-align: center; }
+  .pex-gauge { width: 100%; max-width: 240px; }
+  .pex-verdict {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--pex-amber);
+    letter-spacing: 3px; font-size: 12px; margin-top: 2px;
+    min-height: 16px;
+  }
+  .pex-eq {
+    color: var(--pex-steel); font-size: 14px; margin-top: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .pex-eq b { color: var(--pex-paper); }
+
+  .pex-note {
+    color: var(--pex-steel); font-size: 13px;
+    padding: 14px 24px 20px;
+    border-top: 1px dashed var(--pex-line);
+    margin-top: 14px; font-style: italic;
+  }
+
+  /* ---- Puente hacia la app ---- */
+  .pex-arrow {
+    text-align: center; margin-top: 26px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--pex-amber); font-size: 13px; letter-spacing: 2px;
+  }
+  .pex-arrow span { display: block; font-size: 22px; margin-top: 6px; }
+
+  @media (max-width: 760px) {
+    .pex-body { grid-template-columns: 1fr; gap: 20px; padding: 22px 18px 6px; }
+    .pex { padding: 44px 16px 44px; }
+  }
+</style>
+
+<div class="pex-inner">
+  <div class="pex-eyebrow">PRUEBA LA FÓRMULA</div>
+  <h2>Esfuerzo × Concentración × Tiempo = <em>Resultado</em></h2>
+  <p class="pex-lead">
+    Mueve las tres palancas. La fórmula no suma: multiplica.
+    Y la multiplicación no perdona los ceros.
+  </p>
+
+  <div class="pex-board">
+    <div class="pex-top">
+      <span class="pex-dot" id="pex-dot"></span>
+      <span class="pex-title">PANEL DE EJECUCIÓN</span>
+      <span class="pex-formula">E×C×T=R</span>
+    </div>
+
+    <div class="pex-body">
+      <div class="pex-levers">
+        <div class="pex-lever">
+          <div class="pex-lhead">
+            <span class="pex-lcode">E</span>
+            <span class="pex-llabel">Esfuerzo</span>
+            <span class="pex-lval" id="pex-val-e">7</span>
+          </div>
+          <input type="range" id="pex-e" min="0" max="10" step="1" value="7" aria-label="Esfuerzo">
+          <div class="pex-ticks" id="pex-ticks-e" aria-hidden="true"></div>
+        </div>
+        <div class="pex-lever">
+          <div class="pex-lhead">
+            <span class="pex-lcode">C</span>
+            <span class="pex-llabel">Concentración</span>
+            <span class="pex-lval" id="pex-val-c">6</span>
+          </div>
+          <input type="range" id="pex-c" min="0" max="10" step="1" value="6" aria-label="Concentración">
+          <div class="pex-ticks" id="pex-ticks-c" aria-hidden="true"></div>
+        </div>
+        <div class="pex-lever">
+          <div class="pex-lhead">
+            <span class="pex-lcode">T</span>
+            <span class="pex-llabel">Tiempo</span>
+            <span class="pex-lval" id="pex-val-t">5</span>
+          </div>
+          <input type="range" id="pex-t" min="0" max="10" step="1" value="5" aria-label="Tiempo">
+          <div class="pex-ticks" id="pex-ticks-t" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <div class="pex-readout">
+        <svg class="pex-gauge" viewBox="0 0 220 140" aria-hidden="true">
+          <path id="pex-arc-bg" fill="none" stroke="#1F3448"
+                stroke-width="12" stroke-linecap="round"></path>
+          <path id="pex-arc-fill" fill="none" stroke="#F5A524"
+                stroke-width="12" stroke-linecap="round"></path>
+          <circle cx="110" cy="110" r="6" fill="#F5A524"></circle>
+          <line id="pex-needle" x1="110" y1="110" x2="110" y2="40"
+                stroke="#E9EFF4" stroke-width="2.5"
+                stroke-linecap="round"></line>
+          <text id="pex-r" x="110" y="80" text-anchor="middle"
+                fill="#E9EFF4" font-size="30" font-weight="700"
+                font-family="'JetBrains Mono', monospace">210</text>
+          <text x="110" y="100" text-anchor="middle"
+                fill="#7E97AB" font-size="10" letter-spacing="3"
+                font-family="'JetBrains Mono', monospace">RESULTADO</text>
+        </svg>
+        <div class="pex-verdict" id="pex-verdict">AVANCE SOSTENIDO</div>
+        <div class="pex-eq" id="pex-eq">7 × 6 × 5 = <b>210</b> / 1000</div>
+      </div>
+    </div>
+
+    <p class="pex-note">
+      Si cualquier variable llega a cero, el resultado es cero.
+      La fórmula no perdona la multiplicación.
+    </p>
+  </div>
+
+  <div class="pex-arrow">
+    ¿LISTO? AHORA REGISTRA TU DÍA REAL
+    <span>↓</span>
+  </div>
+</div>
+
+<script>
+(function () {
+  var CX = 110, CY = 110, R = 84;
+  var A0 = Math.PI * 0.85;          /* inicio del arco (izquierda)  */
+  var A1 = Math.PI * 0.15 - Math.PI;/* fin del arco (derecha)       */
+
+  var el = function (id) { return document.getElementById(id); };
+  var inputs = { e: el('pex-e'), c: el('pex-c'), t: el('pex-t') };
+  var vals   = { e: el('pex-val-e'), c: el('pex-val-c'), t: el('pex-val-t') };
+  var ticks  = { e: el('pex-ticks-e'), c: el('pex-ticks-c'), t: el('pex-ticks-t') };
+
+  /* Crear las 11 marcas de cada palanca */
+  Object.keys(ticks).forEach(function (k) {
+    for (var i = 0; i <= 10; i++) {
+      var s = document.createElement('span');
+      s.className = 'pex-tick';
+      ticks[k].appendChild(s);
+    }
+  });
+
+  function arcPath(a0, a1) {
+    var x0 = CX + R * Math.cos(a0), y0 = CY - R * Math.sin(a0);
+    var x1 = CX + R * Math.cos(a1), y1 = CY - R * Math.sin(a1);
+    var large = (a0 - a1) > Math.PI ? 1 : 0;
+    return 'M ' + x0 + ' ' + y0 + ' A ' + R + ' ' + R +
+           ' 0 ' + large + ' 1 ' + x1 + ' ' + y1;
+  }
+
+  function verdict(r) {
+    if (r >= 700) return 'RÉGIMEN MÁXIMO';
+    if (r >= 400) return 'AVANCE SOSTENIDO';
+    if (r >= 150) return 'EN CALENTAMIENTO';
+    if (r > 0)    return 'ARRANQUE';
+    return 'MÁQUINA DETENIDA';
+  }
+
+  function paintTicks(k, v) {
+    var kids = ticks[k].children;
+    for (var i = 0; i < kids.length; i++) {
+      kids[i].className = i <= v ? 'pex-tick on' : 'pex-tick';
+    }
+  }
+
+  function render() {
+    var e = +inputs.e.value, c = +inputs.c.value, t = +inputs.t.value;
+    var r = e * c * t;
+    var pct = Math.min(r / 1000, 1);
+    var aEnd = A0 - (A0 - A1) * pct;
+
+    vals.e.textContent = e; paintTicks('e', e);
+    vals.c.textContent = c; paintTicks('c', c);
+    vals.t.textContent = t; paintTicks('t', t);
+
+    el('pex-arc-bg').setAttribute('d', arcPath(A0, A1));
+    if (pct > 0.005) {
+      el('pex-arc-fill').setAttribute('d', arcPath(A0, aEnd));
+      el('pex-arc-fill').style.display = '';
+    } else {
+      el('pex-arc-fill').style.display = 'none';
+    }
+
+    var nx = CX + (R - 18) * Math.cos(aEnd);
+    var ny = CY - (R - 18) * Math.sin(aEnd);
+    el('pex-needle').setAttribute('x2', nx);
+    el('pex-needle').setAttribute('y2', ny);
+
+    el('pex-r').textContent = r;
+    el('pex-verdict').textContent = verdict(r);
+    el('pex-eq').innerHTML = e + ' × ' + c + ' × ' + t +
+      ' = <b>' + r + '</b> / 1000';
+
+    var dot = el('pex-dot');
+    dot.style.background = r > 0 ? '#59C99B' : '#B87A14';
+    dot.style.boxShadow = '0 0 10px ' + (r > 0 ? '#59C99B' : '#B87A14');
+  }
+
+  ['e', 'c', 't'].forEach(function (k) {
+    inputs[k].addEventListener('input', render);
+  });
+  render();
+})();
+</script>
+</section>
+<!-- ==================== FIN SECCIÓN: PANEL DE EJECUCIÓN ==================== -->
 
 <!-- =====================================================
      PASO 1 · DEFINIR LA META (solo se muestra si no hay meta)
