@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog — Rubén A. Tobar</title>
-<meta name="description" content="Artículos de Rubén A. Tobar sobre ejecución, disciplina, fe y el oficio de escribir.">
+<title>Cuaderno de Ejecución — Rubén A. Tobar</title>
+<meta name="description" content="El Cuaderno de Ejecución de Rubén A. Tobar: entregas sobre ejecución, disciplina, fe y el oficio de escribir.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -27,57 +28,359 @@
   </nav>
 </header>
 
-<section class="hero" style="padding-bottom:56px;">
-  <div class="hero-inner">
-    <span class="eyebrow">Blog</span>
-    <h1 style="max-width:16ch;">Notas sobre ejecución, fe y oficio</h1>
-    <p class="hero-lede">
-      Reflexiones cortas entre turno y turno: sobre escribir, ejecutar, tocar
-      piano sin haber ido a un conservatorio, y sostener la fe en medio de la
-      rutina.
+<!-- ==================== INICIO: CUADERNO DE EJECUCIÓN ==================== -->
+<main class="cdx">
+<style>
+  /* ============ La biblioteca: verde bosque + dorado champán ============ */
+  .cdx {
+    --cdx-bosque: #0D2A21;
+    --cdx-bosque-2: #12362A;
+    --cdx-bosque-3: #1A4536;
+    --cdx-oro: #C9A45C;
+    --cdx-oro-claro: #E4CB92;
+    --cdx-marfil: #F4EEE1;
+    --cdx-bruma: #9CB3A6;
+    --cdx-tinta: #081D16;
+
+    display: block;
+    background: var(--cdx-bosque);
+    color: var(--cdx-marfil);
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .cdx * { box-sizing: border-box; margin: 0; padding: 0; }
+  .cdx .serif { font-family: 'Cormorant Garamond', Georgia, serif; }
+  .cdx-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  .cdx a { color: inherit; }
+  .cdx a:focus-visible { outline: 2px solid var(--cdx-oro); outline-offset: 3px; }
+
+  /* ---- Cabecera de la gaceta ---- */
+  .cdx-head {
+    text-align: center; padding: 64px 24px 46px;
+    border-bottom: 1px solid var(--cdx-bosque-3);
+  }
+  .cdx-eyebrow {
+    font-size: 11px; letter-spacing: 6px; color: var(--cdx-oro);
+    text-transform: uppercase; font-weight: 500;
+  }
+  .cdx-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(46px, 8vw, 92px);
+    font-weight: 600; line-height: 1.02;
+    margin: 18px 0 14px;
+  }
+  .cdx-title em { font-style: italic; font-weight: 500; color: var(--cdx-oro-claro); }
+  .cdx-sub {
+    color: var(--cdx-bruma); font-size: 17px; max-width: 54ch;
+    margin: 0 auto; font-weight: 300;
+  }
+  .cdx-rule {
+    width: 120px; height: 1px; background: var(--cdx-oro);
+    margin: 34px auto 0; position: relative;
+  }
+  .cdx-rule::after {
+    content: '✦'; position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--cdx-bosque); padding: 0 12px;
+    color: var(--cdx-oro); font-size: 12px;
+  }
+
+  /* ---- Entrega destacada ---- */
+  .cdx-featured { padding: 70px 24px 60px; border-bottom: 1px solid var(--cdx-bosque-3); }
+  .cdx-frame { border: 1px solid var(--cdx-oro); padding: 8px; max-width: 1052px; margin: 0 auto; }
+  .cdx-finner {
+    border: 1px solid var(--cdx-bosque-3);
+    background: var(--cdx-bosque-2);
+    padding: clamp(30px, 6vw, 70px);
+    display: grid; grid-template-columns: auto 1fr; gap: clamp(24px, 5vw, 60px);
+    align-items: start;
+  }
+  .cdx-fnum {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(60px, 10vw, 130px);
+    font-weight: 500; font-style: italic;
+    color: var(--cdx-oro); line-height: .8;
+  }
+  .cdx-fnum small {
+    display: block; font-family: 'Outfit', sans-serif;
+    font-style: normal; font-size: 10px; letter-spacing: 4px;
+    color: var(--cdx-bruma); margin-top: 16px; text-transform: uppercase;
+  }
+  .cdx-fcat {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--cdx-oro); font-weight: 500;
+  }
+  .cdx-ftitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 600; line-height: 1.08;
+    margin: 14px 0 20px;
+  }
+  .cdx-ftitle a { text-decoration: none; transition: color .25s ease; }
+  .cdx-ftitle a:hover { color: var(--cdx-oro-claro); }
+  .cdx-fexcerpt { color: var(--cdx-bruma); font-size: 17px; max-width: 58ch; }
+  .cdx-fexcerpt::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; font-weight: 600; color: var(--cdx-oro);
+    float: left; line-height: .82; padding-right: 10px; padding-top: 4px;
+  }
+  .cdx-fmeta {
+    margin-top: 26px; display: flex; gap: 22px; flex-wrap: wrap;
+    font-size: 12.5px; letter-spacing: 1px; color: var(--cdx-bruma);
+    text-transform: uppercase;
+  }
+  .cdx-fmeta b { color: var(--cdx-marfil); font-weight: 500; }
+  .cdx-btn {
+    display: inline-block; margin-top: 30px;
+    font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--cdx-tinta); background: var(--cdx-oro);
+    padding: 15px 30px; text-decoration: none; font-weight: 600;
+    transition: background .2s ease, transform .15s ease;
+  }
+  .cdx-btn:hover { background: var(--cdx-oro-claro); transform: translateY(-2px); }
+
+  /* ---- Índice de entregas ---- */
+  .cdx-entregas { padding: 70px 24px 30px; max-width: 1100px; margin: 0 auto; }
+  .cdx-seclabel { display: flex; align-items: center; gap: 20px; margin-bottom: 44px; }
+  .cdx-seclabel h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; font-weight: 600; white-space: nowrap;
+  }
+  .cdx-seclabel .cdx-line { flex: 1; height: 1px; background: var(--cdx-bosque-3); }
+  .cdx-seclabel span {
+    font-size: 11px; letter-spacing: 3px; color: var(--cdx-bruma);
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .cdx-entrega {
+    display: grid; grid-template-columns: 90px 1fr auto;
+    gap: clamp(18px, 4vw, 44px); align-items: baseline;
+    padding: 34px 6px;
+    border-bottom: 1px solid var(--cdx-bosque-3);
+    text-decoration: none;
+    transition: background .25s ease;
+  }
+  .cdx-entrega:hover { background: var(--cdx-bosque-2); }
+  .cdx-entrega:hover .cdx-etitle { color: var(--cdx-oro-claro); }
+  .cdx-entrega:hover .cdx-enum { color: var(--cdx-oro); }
+  .cdx-enum {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 40px; font-weight: 500;
+    color: var(--cdx-bosque-3); transition: color .25s ease;
+    text-align: center;
+  }
+  .cdx-ecat {
+    font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--cdx-oro); font-weight: 500;
+  }
+  .cdx-etitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3vw, 30px); font-weight: 600;
+    line-height: 1.15; margin: 8px 0 10px;
+    transition: color .25s ease;
+  }
+  .cdx-eexcerpt { color: var(--cdx-bruma); font-size: 15px; max-width: 62ch; }
+  .cdx-eside { text-align: right; }
+  .cdx-edate {
+    display: block; font-size: 11px; letter-spacing: 2px;
+    color: var(--cdx-bruma); text-transform: uppercase; white-space: nowrap;
+  }
+  .cdx-soon { opacity: .45; pointer-events: none; }
+  .cdx-soon .cdx-edate { color: var(--cdx-oro); }
+
+  /* ---- Cita ---- */
+  .cdx-quote {
+    margin: 80px 0; padding: 80px 24px;
+    background: var(--cdx-bosque-2);
+    border-top: 1px solid var(--cdx-oro);
+    border-bottom: 1px solid var(--cdx-oro);
+    text-align: center;
+  }
+  .cdx-quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(26px, 4.5vw, 44px);
+    font-style: italic; font-weight: 500;
+    max-width: 26ch; margin: 0 auto; line-height: 1.25;
+    border: none; padding: 0;
+  }
+  .cdx-quote blockquote em { color: var(--cdx-oro-claro); }
+  .cdx-quote cite {
+    display: block; margin-top: 26px; font-style: normal;
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--cdx-bruma);
+  }
+
+  /* ---- Invitación final ---- */
+  .cdx-correo { padding: 20px 24px 90px; text-align: center; }
+  .cdx-correo h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 5vw, 46px); font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .cdx-correo h2 em { font-style: italic; color: var(--cdx-oro-claro); }
+  .cdx-correo p { color: var(--cdx-bruma); max-width: 48ch; margin: 0 auto 30px; }
+
+  /* ---- Revelado suave ---- */
+  .cdx-reveal { opacity: 0; transform: translateY(18px);
+    transition: opacity .7s ease, transform .7s ease; }
+  .cdx-reveal.cdx-in { opacity: 1; transform: none; }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 780px) {
+    .cdx-finner { grid-template-columns: 1fr; }
+    .cdx-fnum { font-size: 64px; }
+    .cdx-fnum small { margin-top: 8px; }
+    .cdx-entrega { grid-template-columns: 1fr; gap: 6px; }
+    .cdx-enum { text-align: left; font-size: 30px; }
+    .cdx-eside { text-align: left; margin-top: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cdx-reveal { opacity: 1; transform: none; transition: none; }
+    .cdx-btn, .cdx-entrega { transition: none; }
+  }
+</style>
+
+  <!-- Cabecera de la gaceta -->
+  <section class="cdx-head">
+    <p class="cdx-eyebrow">Entregas sobre ejecución, fe y oficio</p>
+    <h1 class="cdx-title">Cuaderno de<br><em>Ejecución</em></h1>
+    <p class="cdx-sub">
+      Reflexiones entre turno y turno: sobre escribir, ejecutar, tocar piano
+      sin haber pisado un conservatorio, y sostener la fe en medio de la rutina.
     </p>
-  </div>
-</section>
+    <div class="cdx-rule" aria-hidden="true"></div>
+  </section>
 
-<section class="section section-kraft" data-reveal>
-  <div class="section-inner">
-    <div class="post-list">
-
-      <a href="blog/por-que-abandonas-tus-metas.html" class="post-row">
-        <span class="post-date">6 Julio 2026</span>
+  <!-- Entrega destacada -->
+  <section class="cdx-featured cdx-reveal">
+    <div class="cdx-frame">
+      <article class="cdx-finner">
+        <div class="cdx-fnum serif">III<small>Entrega</small></div>
         <div>
-          <span class="post-category">Constancia</span>
-          <h2 class="post-title">Por qué abandonas tus metas en la segunda semana</h2>
-          <p class="post-excerpt">No es falta de motivación: es una fórmula incompleta. El esfuerzo sigue presente, pero multiplicado por una concentración cercana a cero, el resultado es cero.</p>
+          <p class="cdx-fcat">Constancia</p>
+          <h2 class="cdx-ftitle serif">
+            <a href="blog/por-que-abandonas-tus-metas.html">Por qué abandonas tus metas en la segunda semana</a>
+          </h2>
+          <p class="cdx-fexcerpt">
+            No es falta de motivación: es una fórmula incompleta. El esfuerzo
+            sigue presente, pero multiplicado por una concentración cercana a
+            cero, el resultado es cero.
+          </p>
+          <div class="cdx-fmeta">
+            <span>Por <b>Rubén A. Tobar</b></span>
+            <span><b>6 de julio, 2026</b></span>
+          </div>
+          <a href="blog/por-que-abandonas-tus-metas.html" class="cdx-btn">Leer la entrega</a>
         </div>
-      </a>
-
-      <a href="blog/por-que-escribi-ejecuta.html" class="post-row">
-        <span class="post-date">23 mayo 2026</span>
-        <div>
-          <span class="post-category">Origen del libro</span>
-          <h2 class="post-title">Por qué escribí Ejecuta después de 17 años en una fábrica</h2>
-          <p class="post-excerpt">La idea de este libro no nació en un escritorio, sino entre turnos, máquinas y la pregunta de por qué unas ideas avanzan y otras se quedan a medias.</p>
-        </div>
-      </a>
-
-      <a href="blog/formula-y-piano.html" class="post-row">
-        <span class="post-date">15 marzo 2026</span>
-        <div>
-          <span class="post-category">E×C×T=R</span>
-          <h2 class="post-title">La fórmula E×C×T=R explicada con una pieza de piano</h2>
-          <p class="post-excerpt">Ninguna pieza se toca bien a la primera. Lo que distingue a quien la domina es exactamente lo que describe la fórmula del libro.</p>
-        </div>
-      </a>
-
-      <!-- Para publicar un nuevo artículo:
-           1) Duplica un archivo de la carpeta /blog (por ejemplo formula-y-piano.html)
-           2) Cambia el título, la fecha y el contenido
-           3) Copia el bloque <a class="post-row"> de arriba y enlázalo al nuevo archivo -->
-
+      </article>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Índice de entregas -->
+  <section class="cdx-entregas">
+    <div class="cdx-seclabel cdx-reveal">
+      <h2 class="serif">Todas las entregas</h2>
+      <div class="cdx-line" aria-hidden="true"></div>
+      <span>Publicación continua</span>
+    </div>
+
+    <a href="blog/por-que-escribi-ejecuta.html" class="cdx-entrega cdx-reveal">
+      <span class="cdx-enum serif">II</span>
+      <div>
+        <p class="cdx-ecat">Origen del libro</p>
+        <h3 class="cdx-etitle serif">Por qué escribí Ejecuta después de 17 años en una fábrica</h3>
+        <p class="cdx-eexcerpt">
+          La idea de este libro no nació en un escritorio, sino entre turnos,
+          máquinas y la pregunta de por qué unas ideas avanzan y otras se quedan
+          a medias.
+        </p>
+      </div>
+      <div class="cdx-eside">
+        <span class="cdx-edate">23 de mayo, 2026</span>
+      </div>
+    </a>
+
+    <a href="blog/formula-y-piano.html" class="cdx-entrega cdx-reveal">
+      <span class="cdx-enum serif">I</span>
+      <div>
+        <p class="cdx-ecat">E×C×T=R</p>
+        <h3 class="cdx-etitle serif">La fórmula E×C×T=R explicada con una pieza de piano</h3>
+        <p class="cdx-eexcerpt">
+          Ninguna pieza se toca bien a la primera. Lo que distingue a quien la
+          domina es exactamente lo que describe la fórmula del libro.
+        </p>
+      </div>
+      <div class="cdx-eside">
+        <span class="cdx-edate">15 de marzo, 2026</span>
+      </div>
+    </a>
+
+    <div class="cdx-entrega cdx-soon cdx-reveal" aria-hidden="true">
+      <span class="cdx-enum serif">IV</span>
+      <div>
+        <p class="cdx-ecat">Fe y oficio</p>
+        <h3 class="cdx-etitle serif">La próxima entrega se está escribiendo</h3>
+        <p class="cdx-eexcerpt">Entre turnos, como siempre.</p>
+      </div>
+      <div class="cdx-eside">
+        <span class="cdx-edate">Próximamente</span>
+      </div>
+    </div>
+
+    <!-- Para publicar una nueva entrega:
+         1) Duplica un archivo de la carpeta /blog (por ejemplo formula-y-piano.html)
+         2) Cambia el título, la fecha y el contenido
+         3) Copia un bloque <a class="cdx-entrega"> de arriba, actualiza el número
+            romano, el título, la fecha y el enlace
+         4) La entrega más reciente va en el marco dorado de "Entrega destacada";
+            la anterior baja a esta lista -->
+  </section>
+
+  <!-- Cita -->
+  <section class="cdx-quote cdx-reveal">
+    <blockquote class="serif">
+      «Una idea sin ejecución es solo <em>una intención.</em>»
+    </blockquote>
+    <cite>Ejecuta · El arte de ejecutar las ideas</cite>
+  </section>
+
+  <!-- Invitación final -->
+  <section class="cdx-correo cdx-reveal">
+    <h2 class="serif">La fórmula completa vive <em>en los libros</em></h2>
+    <p>
+      Estas entregas son notas del camino. La obra completa, con sus casos y
+      su porqué, está en el catálogo.
+    </p>
+    <a href="libros.html" class="cdx-btn">Ver los libros</a>
+  </section>
+
+<script>
+  /* Revelado suave al hacer scroll, respetando reduced motion */
+  (function () {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.cdx-reveal');
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(function (el) { el.classList.add('cdx-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          en.target.classList.add('cdx-in');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+    /* Respaldo: si algo no se reveló en 1.5 s, mostrarlo */
+    setTimeout(function () {
+      items.forEach(function (el) { el.classList.add('cdx-in'); });
+    }, 1500);
+  })();
+</script>
+</main>
+<!-- ==================== FIN: CUADERNO DE EJECUCIÓN ==================== -->
 
 <footer class="site-footer">
   <div class="footer-inner">
